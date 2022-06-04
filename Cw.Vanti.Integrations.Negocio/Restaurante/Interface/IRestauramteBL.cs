@@ -12,6 +12,8 @@
 namespace Cw.Vanti.Integrations.Negocio
 {
     using Cw.Vanti.Integrations.DtoModel;
+    using System.Collections.Generic;
+
     /// <summary>
     /// IRestauramteBL interface.
     /// </summary>
@@ -29,14 +31,20 @@ namespace Cw.Vanti.Integrations.Negocio
         /// </summary>
         /// <param name="platoRequestEdit">Objeto con la informacion de un plato que desea ser editada</param>
         /// <returns>PlatoResponseDto</returns>
-        public PlatoResponseDto EditarPlatoBL(PlatoRequestDto platoRequestEdit);
+        PlatoResponseDto EditarPlatoBL(PlatoRequestDto platoRequestEdit);
 
         /// <summary>
         /// Metodo para buscar una encuesta por id especifico
         /// </summary>
         /// <param name="idPlato">Id unico del plato que esta siendo consultada</param>
         /// <returns>Objeto con la informacion del prestamo</returns>
-        public PlatoResponseDto ObtenerPlatoPorIdBL(int idPlato);
+        PlatoResponseDto ObtenerPlatoPorIdBL(int idPlato);
+
+        /// <summary>
+        /// Metodo para buscar una encuesta por id especifico
+        /// </summary>
+        /// <returns>Objeto con la informacion del prestamo</returns>
+        IList<PlatoResponseDto> ObtenerPlatoListadoBL();
 
     }
 }

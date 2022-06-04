@@ -10,6 +10,7 @@
 namespace Cw.Vanti.Integrations.Datos
 {
     using Cw.Vanti.Integrations.DtoModel;
+    using System.Collections.Generic;
 
     /// <summary>
     /// Proporciona la implementacion definida para el repositorio
@@ -28,13 +29,19 @@ namespace Cw.Vanti.Integrations.Datos
         /// </summary>
         /// <param name="plato">Entidad a ser editada</param>
         /// <returns>PlatoResponseDto.</returns>
-        public PlatoResponseDto EditarPlato(PlatoRequestDto plato);
+        PlatoResponseDto EditarPlato(PlatoRequestDto plato);
 
         /// <summary>
         /// Metodo para llamar al procedimiento almacenado que editar la entidad <see cref="PlatoResponseDto"/>
         /// </summary>
         /// <param name="idPlato">id de la entidad a ser buscada</param>
         /// <returns>PlatoResponseDto.</returns>
-        public PlatoResponseDto ObtenerPlatoPorId(int? idPlato);
+        PlatoResponseDto ObtenerPlatoPorId(int? idPlato);
+
+        /// <summary>
+        /// Metodo para llamar al procedimiento almacenado que lista los platos <see cref="PlatoResponseDto"/>
+        /// </summary>
+        /// <returns>PlatoResponseDto.</returns>
+        IList<PlatoResponseDto> ObtenerPlatoListado();
     }
 }

@@ -15,6 +15,7 @@ namespace Cw.Vanti.Integrations.Negocio
     using Cw.Vanti.Integrations.DtoModel;
     using Cw.Vanti.Integrations.Utils;
     using System;
+    using System.Collections.Generic;
     using System.Transactions;
 
     /// <summary>
@@ -114,7 +115,7 @@ namespace Cw.Vanti.Integrations.Negocio
             {
                 PlatoResponseDto obtenido = null;
 
-                obtenido = this.Negocio.Repositorios.RestauranteRepository.ObtenerEncuestaPorId(idPlato);
+                obtenido = this.Negocio.Repositorios.RestauranteRepository.ObtenerPlatoPorId(idPlato);
 
                 return obtenido;
             }
@@ -133,7 +134,34 @@ namespace Cw.Vanti.Integrations.Negocio
             }
         }
 
+        /// <summary>
+        /// Metodo para buscar una encuesta por id especifico
+        /// </summary>
+        /// <returns>Objeto con la informacion del prestamo</returns>
+        public IList<PlatoResponseDto> ObtenerPlatoListadoBL()
+        {
+            try
+            {
+                IList<PlatoResponseDto> obtenido = null;
 
+                obtenido = this.Negocio.Repositorios.RestauranteRepository.ObtenerPlatoListado();
+
+                return obtenido;
+            }
+            catch (DatosException ex)
+            {
+                throw new FallaTecnicaException("No es posible buscar los datos solicitados.", ex);
+            }
+            catch (NegocioException ex)
+            {
+                throw new NegocioException(ex.Message, ex);
+            }
+            catch (Exception ex)
+            {
+                AppLogger.Instance().Exception(ex);
+                throw new FallaTecnicaException("Ha ocurrido un error procesando la solicitud.", ex);
+            }
+        }
 
     }
 }

@@ -4,6 +4,7 @@ using Cw.Vanti.Integrations.Utils;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
 using System;
+using System.Collections.Generic;
 using System.Net;
 using WebAPI;
 
@@ -30,9 +31,6 @@ namespace Cw.Vanti.Integrations.WebApi
         {
             try
             {
-                //PlatoRequestDto data = new();
-                //data.NombrePlato = platoRequestDto;
-
                 PlatoResponseDto result = this.RestauranteBL.CrearPlatoBL(platoRequestDto);
                 return this.HandleResponse(result, EResponseMessage.OperacionOk().Message);
             }
@@ -57,7 +55,7 @@ namespace Cw.Vanti.Integrations.WebApi
         /// <param name="platosDTO">Objeto modulo con plato a editar</param>
         /// <returns>Objeto con la respuesta.</returns>
         [HttpPut("platos")]
-        public IActionResult EditarEncuesta(PlatoRequestDto platosDTO)
+        public IActionResult EditarPlato(PlatoRequestDto platosDTO)
         {
             try
             {
@@ -84,7 +82,7 @@ namespace Cw.Vanti.Integrations.WebApi
         /// <param name="idPlato">Id unico de la entidad a ser consultada</param>
         /// <returns>Objeto con la respuesta.</returns>
         [HttpGet("plato/{idPlato}")]
-        public IActionResult ObtenerEncuestaPorId(int idPlato)
+        public IActionResult ObtenerPlatosPorId(int idPlato)
         {
             try
             {
@@ -105,5 +103,33 @@ namespace Cw.Vanti.Integrations.WebApi
             }
         }
 
+        /// <summary>
+        /// Metodo usado para obtener un listado de platos
+        /// </summary>
+        /// <returns>Objeto con la respuesta.</returns>
+        [HttpGet("platosListado")]
+        public IActionResult ObtenerPlatoListado()
+        {
+            try
+            {
+                IList<PlatoResponseDto> result = this.RestauranteBL.ObtenerPlatoListadoBL();
+                return this.HandleResponse(result, EResponseMessage.OperacionOk().Message);
+            }
+            catch (NegocioException ex)
+            {
+                return this.HandleErrorResponse(HttpStatusCode.OK, ex.Message);
+            }
+            catch (FallaTecnicaException)
+            {
+                return this.HandleErrorResponse(HttpStatusCode.InternalServerError, EResponseMessage.ErrorGral().Message);
+            }
+            catch (Exception)
+            {
+                return this.HandleErrorResponse(HttpStatusCode.InternalServerError, EResponseMessage.ErrorGral().Message);
+            }
+        }
+
     }
+
+
 }

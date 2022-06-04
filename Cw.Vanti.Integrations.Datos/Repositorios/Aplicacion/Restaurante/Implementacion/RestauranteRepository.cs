@@ -17,8 +17,9 @@ namespace Cw.Vanti.Integrations.Datos
     using System;
     using System.Data;
     using Cw.Vanti.Integrations.Entidades;
+    using System.Collections.Generic;
 
-    
+
     /// <summary>
     /// Proporciona la implementacion definida para el repositorio
     /// </summary>
@@ -54,7 +55,7 @@ namespace Cw.Vanti.Integrations.Datos
             {
                 int errorCode = 0;
                 StoredProcedure storedProcedure = new StoredProcedure("[Mat].[ChinoPlatosGuardar]");
-                storedProcedure.AddParameter("@NombrePlato", plato.NombrePlato.ToString());
+                storedProcedure.AddParameter("@NombrePlato", plato.NombrePlato);
 
                 SqlParameter outCodigoError = new SqlParameter("@CodigoError", 0)
                 {
@@ -99,7 +100,7 @@ namespace Cw.Vanti.Integrations.Datos
             try
             {
                 int errorCode = 0;
-                StoredProcedure storedProcedure = new StoredProcedure("[Mat].[PlatosEditar]");
+                StoredProcedure storedProcedure = new StoredProcedure("[Mat].[ChinoPlatoEditar]");
                 storedProcedure.AddParameter("@IdPlato", plato.IdPlato);
                 storedProcedure.AddParameter("@NombrePlato", plato.NombrePlato);
                 SqlParameter outCodigoError = new SqlParameter("@CodigoError", 0)
@@ -136,7 +137,7 @@ namespace Cw.Vanti.Integrations.Datos
 
 
         /// <summary>
-        /// Metodo para llamar al procedimiento almacenado que editar la entidad <see cref="PlatoResponseDto"/>
+        /// Metodo para llamar al procedimiento almacenado que busca por id la entidad <see cref="PlatoResponseDto"/>
         /// </summary>
         /// <param name="idPlato">id de la entidad a ser buscada</param>
         /// <returns>PlatoResponseDto.</returns>
@@ -145,7 +146,7 @@ namespace Cw.Vanti.Integrations.Datos
             try
             {
                 int errorCode = 0;
-                StoredProcedure storedProcedure = new StoredProcedure("[Mat].[PlatosObtenerPorId]");
+                StoredProcedure storedProcedure = new StoredProcedure("[Mat].[ChinoPlatoObtenerPorId]");
                 storedProcedure.AddParameter("@IdPlato", idPlato);
 
                 SqlParameter outCodigoError = new SqlParameter("@CodigoError", 0)
@@ -169,6 +170,49 @@ namespace Cw.Vanti.Integrations.Datos
                 if (errorCode == 0)
                 {
                     result = JsonConvert.DeserializeObject<PlatoResponseDto>(outResult.Value?.ToString());
+                }
+
+                return result;
+            }
+            catch (Exception ex)
+            {
+                AppLogger.Instance().Exception(ex);
+                throw new DatosException(ex.Message, ex);
+            }
+        }
+
+        /// <summary>
+        /// Metodo para llamar al procedimiento almacenado que lista los platos <see cref="PlatoResponseDto"/>
+        /// </summary>
+        /// <returns>PlatoResponseDto.</returns>
+        public IList<PlatoResponseDto> ObtenerPlatoListado()
+        {
+            try
+            {
+                int errorCode = 0;
+                StoredProcedure storedProcedure = new StoredProcedure("[Mat].[ChinoPlatoObtenerPorListado]");
+
+                SqlParameter outCodigoError = new SqlParameter("@CodigoError", 0)
+                {
+                    Direction = ParameterDirection.Output,
+                    Size = int.MaxValue
+                };
+
+                SqlParameter outResult = new SqlParameter("@Result", SqlDbType.NVarChar)
+                {
+                    Direction = ParameterDirection.Output,
+                    Size = int.MaxValue
+                };
+
+                storedProcedure.AddParameter(outCodigoError);
+                storedProcedure.AddParameter(outResult);
+
+                this.ExecuteStoreProcedure<object>(storedProcedure);
+                errorCode = Int32.Parse(outCodigoError.Value.ToString());
+                IList<PlatoResponseDto> result = null;
+                if (errorCode == 0)
+                {
+                    result = JsonConvert.DeserializeObject<IList<PlatoResponseDto>>(outResult.Value?.ToString());
                 }
 
                 return result;
