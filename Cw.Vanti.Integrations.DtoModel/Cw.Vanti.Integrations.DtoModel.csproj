@@ -1,0 +1,31 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Modulo_1\**" />
+    <Compile Remove="Modulo_2\**" />
+    <EmbeddedResource Remove="Modulo_1\**" />
+    <EmbeddedResource Remove="Modulo_2\**" />
+    <None Remove="Modulo_1\**" />
+    <None Remove="Modulo_2\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="BaseAuditoriaDto.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="5.0.3" />
+    <PackageReference Include="Microsoft.Data.SqlClient" Version="2.1.1" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Cw.Vanti.Integrations.Entidades\Cw.Vanti.Integrations.Entidades.csproj" />
+    <ProjectReference Include="..\Cw.Vanti.Integrations.Middleware\Cw.Vanti.Integrations.Middleware.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,67 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+    <UserSecretsId>2b73f668-9c83-4913-853c-e1d4a1496dbd</UserSecretsId>
+    <Nullable>annotations</Nullable>
+    <PackageId>Cw.Vanti.Integrations.WebApi</PackageId>
+    <Authors>Cw.Vanti.Integrations.WebApi</Authors>
+    <Product>Cw.Vanti.Integrations.WebApi</Product>
+    <AssemblyName>Cw.Vanti.Integrations.WebApi</AssemblyName>
+    <RootNamespace>Cw.Vanti.Integrations.WebApi</RootNamespace>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>D:\Code\AzureDevOps\Brasilia\ProyectoBrasilia-Backend\WebApi\bin\Debug\net5.0\WebApi.xml</DocumentationFile>
+    <Optimize>false</Optimize>
+    <DebugType>full</DebugType>
+    <DebugSymbols>true</DebugSymbols>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(RunConfiguration)' == 'WebApi' " />
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>full</DebugType>
+    <DebugSymbols>true</DebugSymbols>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Remove="Controllers\Seguridad\**" />
+    <Content Remove="Controllers\Seguridad\**" />
+    <EmbeddedResource Remove="Controllers\Seguridad\**" />
+    <None Remove="Controllers\Seguridad\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="Controllers\Aplicacion\EmpresaController.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="qegv4dtm.n2q~" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.1.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="5.0.3" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Formatters.Xml" Version="2.2.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="5.0.3">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Extensions.Configuration.AzureKeyVault" Version="3.1.12" />
+    <PackageReference Include="reCAPTCHA.AspNetCore" Version="3.0.10" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.0.2" />
+    <PackageReference Include="Swashbuckle.AspNetCore.Annotations" Version="6.1.4" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Cw.Vanti.Integrations.DtoModel\Cw.Vanti.Integrations.DtoModel.csproj" />
+    <ProjectReference Include="..\Cw.Vanti.Integrations.Negocio\Cw.Vanti.Integrations.Negocio.csproj" />
+    <ProjectReference Include="..\Cw.Vanti.Integrations.Utils\Cw.Vanti.Integrations.Utils.csproj" />
+  </ItemGroup>
+
+  <ProjectExtensions><VisualStudio><UserProperties properties_4launchsettings_1json__JsonSchema="" /></VisualStudio></ProjectExtensions>
+
+</Project>

@@ -1,0 +1,58 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="EntityFramework2\**" />
+    <Compile Remove="EntityFramework\Seguridad\**" />
+    <Compile Remove="Repositorios\Aplicacion\Turnos\**" />
+    <Compile Remove="Repositorios\Aplicacion\Ventas\**" />
+    <Compile Remove="Repositorios\Modulo_1\**" />
+    <Compile Remove="Repositorios\Modulo_2\**" />
+    <Compile Remove="Repositorios\Seguridad\**" />
+    <EmbeddedResource Remove="EntityFramework2\**" />
+    <EmbeddedResource Remove="EntityFramework\Seguridad\**" />
+    <EmbeddedResource Remove="Repositorios\Aplicacion\Turnos\**" />
+    <EmbeddedResource Remove="Repositorios\Aplicacion\Ventas\**" />
+    <EmbeddedResource Remove="Repositorios\Modulo_1\**" />
+    <EmbeddedResource Remove="Repositorios\Modulo_2\**" />
+    <EmbeddedResource Remove="Repositorios\Seguridad\**" />
+    <None Remove="EntityFramework2\**" />
+    <None Remove="EntityFramework\Seguridad\**" />
+    <None Remove="Repositorios\Aplicacion\Turnos\**" />
+    <None Remove="Repositorios\Aplicacion\Ventas\**" />
+    <None Remove="Repositorios\Modulo_1\**" />
+    <None Remove="Repositorios\Modulo_2\**" />
+    <None Remove="Repositorios\Seguridad\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="10.1.1" />
+    <PackageReference Include="EntityFrameworkCore.Triggers" Version="1.2.2" />
+    <PackageReference Include="GenFu" Version="1.6.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="5.0.3" />
+    <PackageReference Include="Microsoft.Azure.Services.AppAuthentication" Version="1.6.1" />
+    <PackageReference Include="Microsoft.Data.SqlClient" Version="2.1.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.3" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="5.0.3">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="5.0.3" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="5.0.3">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Extensions.Caching.Redis" Version="2.2.0" />
+    <PackageReference Include="Microsoft.Extensions.Identity.Stores" Version="5.0.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Cw.Vanti.Integrations.DtoModel\Cw.Vanti.Integrations.DtoModel.csproj" />
+    <ProjectReference Include="..\Cw.Vanti.Integrations.Entidades\Cw.Vanti.Integrations.Entidades.csproj" />
+    <ProjectReference Include="..\Cw.Vanti.Integrations.Utils\Cw.Vanti.Integrations.Utils.csproj" />
+  </ItemGroup>
+
+</Project>
